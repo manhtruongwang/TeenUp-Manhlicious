@@ -48,14 +48,6 @@ interface Class {
     class_registrations_count: number;
 }
 
-interface ClassRegistration {
-    id: number;
-    class_id: number;
-    student_id: number;
-    class?: Class;
-    student?: Student;
-}
-
 export default function StudentManagement() {
     const [parents, setParents] = useState<Parent[]>([]);
     const [students, setStudents] = useState<Student[]>([]);
@@ -75,11 +67,6 @@ export default function StudentManagement() {
         gender: '',
         current_grade: '',
         parent_id: '',
-    });
-
-    const [registrationForm, setRegistrationForm] = useState({
-        student_id: '',
-        class_id: '',
     });
 
     const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
