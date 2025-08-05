@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "4451b7d1-9098-41fd-afb4-2d2e8900d7ee",
+		"name": "TeenUp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28826765"
+	},
+	"item": [
+		{
+			"name": "Parents",
+			"item": [
+				{
+					"name": "Get Parents by Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/parents/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"parents",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Parents",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Khoa Nguyen\",\n    \"phone\": \"0979681763\",\n    \"email\": \"khoa.ng17@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/parents",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"parents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Classes",
+			"item": [
+				{
+					"name": "Get Classes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/classes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Classes By Day",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/classes?day=monday",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"classes"
+							],
+							"query": [
+								{
+									"key": "day",
+									"value": "monday"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Class",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ReactJS for Dummy\",\n    \"subject\": \"IT\",\n    \"day_of_week\": \"monday\",\n    \"time_slot\": \"16:00-18:00\",\n    \"teacher_name\": \"Mr. Bean\",\n    \"max_students\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/classes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"classes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Class Registrations",
+			"item": [
+				{
+					"name": "Register Student To A Class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/classes/1/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"classes",
+								"1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "Create Subscriptions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": \"1\",\n    \"package_name\": \"Free Trial\",\n    \"start_date\": \"08/05/2025\",\n    \"end_date\": \"09/05/2025\",\n    \"total_sessions\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/subscriptions",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"subscriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Use Subscription",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/subscriptions/1/use",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"1",
+								"use"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Subscription",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/subscriptions/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

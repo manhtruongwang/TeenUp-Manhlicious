@@ -1,0 +1,69 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: teenup_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: teenup_db
+      POSTGRES_USER: teenup_user
+      POSTGRES_PASSWORD: teenup_password
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - teenup_network
+
+  # Laravel Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: teenup_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - app_files:/var/www
+    networks:
+      - teenup_network
+    depends_on:
+      - postgres
+    env_file:
+      - .env-docker
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:alpine
+    container_name: teenup_nginx
+    restart: unless-stopped
+    ports:
+      - '8000:80'
+    volumes:
+      - app_files:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - teenup_network
+    depends_on:
+      - app
+
+  # Redis Cache (optional)
+  redis:
+    image: redis:alpine
+    container_name: teenup_redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    networks:
+      - teenup_network
+
+volumes:
+  postgres_data:
+    driver: local
+  app_files:
+    driver: local
+
+networks:
+  teenup_network:
+    driver: bridge

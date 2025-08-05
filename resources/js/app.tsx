@@ -3,9 +3,22 @@ import '../css/app.css';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
-import { initializeTheme } from './hooks/use-appearance';
+import { Toaster } from 'sonner';
+import { initializeTheme, useAppearance } from './hooks/use-appearance';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+// Wrapper component to use the appearance hook
+function AppWrapper({ App, props }: { App: any; props: any }) {
+    const { appearance } = useAppearance();
+
+    return (
+        <>
+            <App {...props} />
+            <Toaster position="top-right" richColors theme={appearance} />
+        </>
+    );
+}
 
 createInertiaApp({
     title: (title) => title ? `${title} - ${appName}` : appName,
@@ -13,7 +26,7 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(<AppWrapper App={App} props={props} />);
     },
     progress: {
         color: '#4B5563',

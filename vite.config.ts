@@ -14,6 +14,12 @@ export default defineConfig({
         react(),
         tailwindcss(),
     ],
+    server: {
+        hmr: {
+            host: 'teenup-manhlicious.test',
+            protocol: 'wss',
+        },
+    },
     esbuild: {
         jsx: 'automatic',
     },
