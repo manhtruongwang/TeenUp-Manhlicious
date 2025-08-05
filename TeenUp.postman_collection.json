@@ -250,6 +250,64 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Get Student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/students/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hanh Truong\",\n    \"dob\": \"2010-01-01\",\n    \"gender\": \"female\",\n    \"current_grade\": \"5th\",\n    \"parent_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/students",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
